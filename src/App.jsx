@@ -1,4 +1,4 @@
-import { CalendarDays, Clock, ExternalLink, Share2, Trophy } from 'lucide-react'
+import { CalendarDays, Clock, ExternalLink, Share2 } from 'lucide-react'
 import { groupMatches, groups } from './tournamentData'
 
 const teamNames = {
@@ -180,13 +180,16 @@ function GroupCard({ group, teams }) {
 function CopaLogo() {
   return (
     <div className="copa-logo" aria-label="Logo Copa 2026">
-      <div className="logo-symbol">
-        <Trophy size={24} strokeWidth={2.4} />
-        <span>26</span>
+      <div className="logo-emblem" aria-hidden="true">
+        <span className="emblem-number">26</span>
+        <span className="emblem-cup">
+          <i />
+        </span>
+        <span className="emblem-label">Copa</span>
       </div>
       <div className="logo-text">
-        <span>Copa</span>
-        <strong>2026</strong>
+        <strong>Copa 2026</strong>
+        <span>Calendario da fase de grupos</span>
       </div>
     </div>
   )

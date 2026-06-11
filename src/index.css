@@ -56,73 +56,125 @@ button {
   z-index: 1;
   display: flex;
   justify-content: center;
-  padding: 24px 16px 8px;
+  padding: 24px 16px 10px;
 }
 
 .copa-logo {
   display: inline-flex;
   align-items: center;
-  gap: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
-  padding: 9px 18px 9px 10px;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16);
-  backdrop-filter: blur(18px);
+  justify-content: center;
+  gap: 22px;
+  max-width: min(100%, 720px);
 }
 
-.logo-symbol {
+.logo-emblem {
   position: relative;
-  display: grid;
-  width: 58px;
-  height: 58px;
-  place-items: center;
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  border-radius: 50%;
-  background: #fff;
-  color: #000;
+  width: 96px;
+  height: 82px;
+  flex: 0 0 auto;
 }
 
-.logo-symbol::after {
+.emblem-number {
+  position: absolute;
+  inset: -12px 0 auto;
+  color: #fff;
+  font-size: 6.2rem;
+  font-weight: 950;
+  letter-spacing: -0.24em;
+  line-height: 0.8;
+  text-shadow: 0 10px 24px rgba(255, 255, 255, 0.1);
+}
+
+.emblem-number::before {
   content: "";
   position: absolute;
-  inset: 7px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 50%;
+  left: 32px;
+  top: 31px;
+  width: 30px;
+  height: 11px;
+  border-radius: 999px;
+  background: #000;
 }
 
-.logo-symbol svg {
-  transform: translateY(-5px);
-}
-
-.logo-symbol span {
+.emblem-cup {
   position: absolute;
-  bottom: 10px;
-  font-size: 0.78rem;
+  left: 37px;
+  top: 15px;
+  display: block;
+  width: 24px;
+  height: 47px;
+  border-radius: 999px 999px 8px 8px;
+  background:
+    radial-gradient(circle at 42% 25%, #fff4bd 0 9%, transparent 10%),
+    linear-gradient(140deg, #fff5c8 0%, #c9942c 42%, #7b5111 100%);
+  box-shadow:
+    inset -4px 0 9px rgba(0, 0, 0, 0.22),
+    0 0 0 2px rgba(0, 0, 0, 0.2);
+}
+
+.emblem-cup::before,
+.emblem-cup::after {
+  content: "";
+  position: absolute;
+  top: 8px;
+  width: 12px;
+  height: 18px;
+  border: 3px solid #c9942c;
+  border-radius: 999px;
+}
+
+.emblem-cup::before {
+  left: -9px;
+  border-right: 0;
+}
+
+.emblem-cup::after {
+  right: -9px;
+  border-left: 0;
+}
+
+.emblem-cup i {
+  position: absolute;
+  left: 50%;
+  bottom: -15px;
+  width: 34px;
+  height: 16px;
+  border-radius: 999px 999px 4px 4px;
+  background: linear-gradient(140deg, #ffeab0, #9d6818);
+  transform: translateX(-50%);
+}
+
+.emblem-label {
+  position: absolute;
+  left: 28px;
+  bottom: -1px;
+  color: #111;
+  font-size: 0.62rem;
   font-weight: 950;
-  letter-spacing: -0.03em;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
 }
 
 .logo-text {
   display: grid;
   justify-items: start;
-  gap: 1px;
+  gap: 5px;
   line-height: 1;
   text-transform: uppercase;
 }
 
 .logo-text span {
-  color: rgba(255, 255, 255, 0.62);
-  font-size: 0.76rem;
+  color: rgba(255, 255, 255, 0.58);
+  font-size: clamp(0.62rem, 1.5vw, 0.82rem);
   font-weight: 950;
-  letter-spacing: 0.32em;
+  letter-spacing: 0.14em;
 }
 
 .logo-text strong {
   color: #fff;
-  font-size: clamp(1.65rem, 3vw, 2.45rem);
+  font-size: clamp(1.7rem, 4.2vw, 3.05rem);
   font-weight: 950;
-  letter-spacing: 0;
+  letter-spacing: -0.04em;
 }
 
 .toolbar {
@@ -482,4 +534,36 @@ footer a {
   gap: 6px;
   color: #111;
   font-weight: 950;
+}
+
+@media (max-width: 640px) {
+  .copa-logo {
+    gap: 12px;
+  }
+
+  .logo-emblem {
+    width: 74px;
+    height: 66px;
+  }
+
+  .emblem-number {
+    font-size: 4.8rem;
+  }
+
+  .emblem-cup {
+    left: 29px;
+    top: 12px;
+    width: 19px;
+    height: 38px;
+  }
+
+  .emblem-cup i {
+    width: 28px;
+  }
+
+  .emblem-label {
+    left: 21px;
+    bottom: 1px;
+    font-size: 0.52rem;
+  }
 }
