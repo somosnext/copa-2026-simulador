@@ -5,12 +5,14 @@ import {
   Eraser,
   ExternalLink,
   Flag,
+  RefreshCw,
   Medal,
   Share2,
   ShieldCheck,
   Trophy,
 } from 'lucide-react'
 import heroStadium from './assets/hero-stadium.png'
+import { fetchOfficialScores, matchOfficialScores } from './apiFootball'
 import { groupMatches, groups, laterRounds, roundOf32Slots } from './tournamentData'
 
 const STORAGE_KEY = 'wc26-simulator-state-v1'
@@ -274,11 +276,28 @@ function MatchCard({ match, score, onScore, knockout = false }) {
   )
 }
 
-function GroupStage({ standings, state, setGroupScore }) {
+function GroupStage({ standings, state, setGroupScore, officialSync, onSyncOfficialScores }) {
   return (
     <section id="grupos" className="page-section">
       <div className="section-kicker">Fase de grupos</div>
       <h2 className="section-title">72 jogos, 12 grupos, tudo calculado no navegador.</h2>
+      <div className="mt-8 border border-black bg-white p-4 md:flex md:items-center md:justify-between md:gap-6 md:p-6">
+        <div>
+          <h3 className="text-2xl font-black uppercase">Atualizacao oficial</h3>
+          <p className="mt-1 max-w-3xl text-sm font-semibold text-neutral-600">
+            Busca os resultados na API-Football e preenche automaticamente os placares encontrados. Voce ainda pode editar qualquer jogo manualmente.
+          </p>
+          {officialSync.message && (
+            <p className={`mt-3 text-sm font-black uppercase tracking-[0.12em] ${officialSync.error ? 'text-red-700' : 'text-neutral-500'}`}>
+              {officialSync.message}
+            </p>
+          )}
+        </div>
+        <button className="sync-button mt-4 md:mt-0" disabled={officialSync.loading} onClick={onSyncOfficialScores}>
+          <RefreshCw className={officialSync.loading ? 'animate-spin' : ''} size={18} />
+          {officialSync.loading ? 'Atualizando' : 'Atualizar placares'}
+        </button>
+      </div>
       <div className="mt-8 grid gap-6">
         {Object.keys(groups).map((group) => (
           <div className="group-panel" key={group}>
@@ -466,6 +485,7 @@ function About() {
 function App() {
   const [page, setPage] = useState('home')
   const [state, setState] = useState(loadState)
+  const [officialSync, setOfficialSync] = useState({ loading: false, message: '', error: false })
 
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state))
@@ -488,6 +508,41 @@ function App() {
 
   const setSeedOverride = (key, team) =>
     setState((current) => ({ ...current, seedOverrides: { ...current.seedOverrides, [key]: team } }))
+
+  const syncOfficialScores = async () => {
+    setOfficialSync({ loading: true, message: 'Buscando resultados...', error: false })
+
+    try {
+      const officialMatches = await fetchOfficialScores()
+      const groupUpdates = matchOfficialScores(groupMatches, officialMatches)
+      const knockoutMatches = Object.values(knockout).flat()
+      const knockoutUpdates = matchOfficialScores(knockoutMatches, officialMatches)
+      const updateCount = Object.keys(groupUpdates).length + Object.keys(knockoutUpdates).length
+
+      setState((current) => ({
+        ...current,
+        groupScores: { ...current.groupScores, ...groupUpdates },
+        knockoutScores: { ...current.knockoutScores, ...knockoutUpdates },
+      }))
+
+      setOfficialSync({
+        loading: false,
+        error: false,
+        message: updateCount
+          ? `${updateCount} placar(es) atualizado(s) pela API.`
+          : 'Nenhum placar final ou ao vivo encontrado na API ainda.',
+      })
+    } catch (error) {
+      const missingKey = error.message === 'missing-api-key'
+      setOfficialSync({
+        loading: false,
+        error: true,
+        message: missingKey
+          ? 'Configure API_FOOTBALL_KEY no deploy ou VITE_API_FOOTBALL_KEY localmente.'
+          : 'Nao foi possivel buscar a API agora. Confira a chave e o deploy.',
+      })
+    }
+  }
 
   const reset = () => {
     if (window.confirm('Limpar toda a simulacao e comecar de novo?')) setState(emptyState)
@@ -554,6 +609,9 @@ function App() {
                   <button className="primary-button" onClick={() => setPage('groups')}>
                     Comecar simulacao <ArrowRight size={18} />
                   </button>
+                  <button className="ghost-button" onClick={syncOfficialScores}>
+                    <RefreshCw size={18} /> Atualizar jogos
+                  </button>
                   <button className="ghost-button" onClick={() => setPage('knockout')}>Ver chave</button>
                 </div>
               </div>
@@ -568,6 +626,11 @@ function App() {
                   <p className="text-xs font-black uppercase tracking-[0.2em] text-white/50">Progresso salvo</p>
                   <strong className="mt-2 block text-4xl font-black">{completedGroupMatches}/72</strong>
                   <span className="font-semibold text-white/65">jogos de grupo preenchidos neste navegador</span>
+                  {officialSync.message && (
+                    <span className={`mt-4 block text-xs font-black uppercase tracking-[0.16em] ${officialSync.error ? 'text-white' : 'text-white/60'}`}>
+                      {officialSync.message}
+                    </span>
+                  )}
                 </div>
               </div>
             </div>
@@ -589,7 +652,15 @@ function App() {
         </main>
       )}
 
-      {page === 'groups' && <GroupStage standings={standings} state={state} setGroupScore={setGroupScore} />}
+      {page === 'groups' && (
+        <GroupStage
+          officialSync={officialSync}
+          standings={standings}
+          state={state}
+          setGroupScore={setGroupScore}
+          onSyncOfficialScores={syncOfficialScores}
+        />
+      )}
       {page === 'knockout' && (
         <Knockout
           knockout={knockout}
