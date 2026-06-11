@@ -46,41 +46,9 @@ button {
   position: relative;
   overflow: hidden;
   border-radius: 0 0 34px 34px;
-  background:
-    radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.18), transparent 24%),
-    radial-gradient(circle at 86% 12%, rgba(255, 255, 255, 0.12), transparent 22%),
-    linear-gradient(135deg, #050505 0%, #111 48%, #000 100%);
+  background: #000;
   color: #fff;
   box-shadow: 0 26px 70px rgba(0, 0, 0, 0.22);
-}
-
-.hero-panel::before,
-.hero-panel::after {
-  content: "";
-  position: absolute;
-  pointer-events: none;
-}
-
-.hero-panel::before {
-  inset: 0;
-  opacity: 0.18;
-  background:
-    linear-gradient(90deg, rgba(255, 255, 255, 0.28) 1px, transparent 1px),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.18) 1px, transparent 1px);
-  background-size: 72px 72px;
-  mask-image: linear-gradient(180deg, #000 0%, transparent 86%);
-}
-
-.hero-panel::after {
-  right: -92px;
-  bottom: -118px;
-  width: 360px;
-  height: 360px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 50%;
-  box-shadow:
-    -48px -42px 0 -18px rgba(255, 255, 255, 0.08),
-    -110px -90px 0 -54px rgba(255, 255, 255, 0.1);
 }
 
 .topbar {
