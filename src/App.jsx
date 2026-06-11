@@ -187,10 +187,6 @@ function CopaLogo() {
         </span>
         <span className="emblem-label">Copa</span>
       </div>
-      <div className="logo-text">
-        <strong>Copa 2026</strong>
-        <span>Calendario da fase de grupos</span>
-      </div>
     </div>
   )
 }
