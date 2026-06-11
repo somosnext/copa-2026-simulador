@@ -42,25 +42,128 @@ button {
   padding-bottom: 42px;
 }
 
-.topbar {
-  border-bottom: 1px solid #ddd;
-  background: #fff;
-  padding: 8px 16px;
-  text-align: center;
+.hero-panel {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0 0 34px 34px;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.18), transparent 24%),
+    radial-gradient(circle at 86% 12%, rgba(255, 255, 255, 0.12), transparent 22%),
+    linear-gradient(135deg, #050505 0%, #111 48%, #000 100%);
+  color: #fff;
+  box-shadow: 0 26px 70px rgba(0, 0, 0, 0.22);
 }
 
-.topbar h1 {
-  margin: 0;
-  color: #555;
-  font-size: clamp(1.25rem, 2.2vw, 1.9rem);
-  font-weight: 500;
+.hero-panel::before,
+.hero-panel::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.hero-panel::before {
+  inset: 0;
+  opacity: 0.18;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.28) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.18) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: linear-gradient(180deg, #000 0%, transparent 86%);
+}
+
+.hero-panel::after {
+  right: -92px;
+  bottom: -118px;
+  width: 360px;
+  height: 360px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  box-shadow:
+    -48px -42px 0 -18px rgba(255, 255, 255, 0.08),
+    -110px -90px 0 -54px rgba(255, 255, 255, 0.1);
+}
+
+.topbar {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  padding: 24px 16px 8px;
+}
+
+.copa-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 9px 18px 9px 10px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(18px);
+}
+
+.logo-symbol {
+  position: relative;
+  display: grid;
+  width: 58px;
+  height: 58px;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+  background: #fff;
+  color: #000;
+}
+
+.logo-symbol::after {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+}
+
+.logo-symbol svg {
+  transform: translateY(-5px);
+}
+
+.logo-symbol span {
+  position: absolute;
+  bottom: 10px;
+  font-size: 0.78rem;
+  font-weight: 950;
+  letter-spacing: -0.03em;
+}
+
+.logo-text {
+  display: grid;
+  justify-items: start;
+  gap: 1px;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.logo-text span {
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 0.76rem;
+  font-weight: 950;
+  letter-spacing: 0.32em;
+}
+
+.logo-text strong {
+  color: #fff;
+  font-size: clamp(1.65rem, 3vw, 2.45rem);
+  font-weight: 950;
+  letter-spacing: 0;
 }
 
 .toolbar {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: 1fr;
   gap: 10px;
-  padding: 16px;
+  padding: 24px 16px 14px;
 }
 
 @media (min-width: 720px) {
@@ -77,42 +180,47 @@ button {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  border: 1px solid #d9d9d9;
-  border-radius: 8px;
-  background: #fff;
-  color: #333;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
   text-decoration: none;
   font-size: 0.92rem;
-  font-weight: 700;
+  font-weight: 850;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(14px);
 }
 
 .toolbar a:hover,
 .toolbar button:hover {
-  border-color: #111;
-  background: #111;
-  color: #fff;
+  border-color: #fff;
+  background: #fff;
+  color: #000;
 }
 
 .intro {
-  padding: 20px 16px 26px;
+  position: relative;
+  z-index: 1;
+  padding: 26px 16px 42px;
   text-align: center;
 }
 
 .intro p {
-  max-width: 920px;
+  max-width: 1030px;
   margin: 0 auto;
-  color: #333;
-  font-size: clamp(1.35rem, 3vw, 2.1rem);
-  font-weight: 850;
-  line-height: 1.16;
+  color: #fff;
+  font-size: clamp(1.6rem, 4vw, 3rem);
+  font-weight: 950;
+  line-height: 1.04;
+  letter-spacing: -0.02em;
 }
 
 .summary-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-  max-width: 860px;
-  margin: 28px auto 0;
+  gap: 12px;
+  max-width: 900px;
+  margin: 34px auto 0;
 }
 
 @media (min-width: 760px) {
@@ -122,15 +230,20 @@ button {
 }
 
 .summary-grid div {
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  background: #fff;
-  padding: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 18px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    0 14px 30px rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(18px);
 }
 
 .summary-grid strong {
   display: block;
-  font-size: 1.8rem;
+  color: #fff;
+  font-size: clamp(1.9rem, 4vw, 3rem);
   font-weight: 950;
   line-height: 1;
 }
@@ -138,7 +251,7 @@ button {
 .summary-grid span {
   display: block;
   margin-top: 6px;
-  color: #6a6a6a;
+  color: rgba(255, 255, 255, 0.62);
   font-size: 0.75rem;
   font-weight: 850;
   letter-spacing: 0.08em;
