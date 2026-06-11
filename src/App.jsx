@@ -1,5 +1,5 @@
 import { CalendarDays, Clock, ExternalLink, Share2 } from 'lucide-react'
-import trophyImage from './assets/trofeu-copa-2026.png'
+import trophyImage from './assets/trofeu-copa-2026-cutout.png'
 import { groupMatches, groups } from './tournamentData'
 
 const teamNames = {
