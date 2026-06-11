@@ -191,7 +191,7 @@ function App() {
       </div>
 
       <section className="intro">
-        <p>Grupos, confrontos, datas, horarios e estadios da fase de grupos da Copa do Mundo 2026.</p>
+        <p>Acompanhe todos os jogos, horarios e resultados da Copa 2026 em um so lugar, com placares atualizados automaticamente a cada jogo.</p>
         <div className="summary-grid">
           <div><strong>48</strong><span>selecoes</span></div>
           <div><strong>12</strong><span>grupos</span></div>
