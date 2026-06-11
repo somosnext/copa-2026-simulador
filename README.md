@@ -2,6 +2,8 @@
 
 Site publico, responsivo e nao oficial para simular a Copa do Mundo FIFA 2026 manualmente.
 
+Site publicado: https://somosnext.github.io/copa-2026-simulador/
+
 ## Funcionalidades
 
 - Todos os 72 jogos da fase de grupos, separados por grupo.
@@ -72,15 +74,24 @@ npm run dev
 npm run build
 ```
 
-## Deploy
+## Deploy no GitHub Pages
 
-O projeto inclui workflow de GitHub Pages em `.github/workflows/deploy.yml`.
+O site esta publicado pelo GitHub Pages usando a branch `gh-pages`.
 
-Depois de subir para um repositorio publico no GitHub:
+Para republicar depois de alguma alteracao:
 
-1. Abra `Settings > Pages`.
-2. Em `Build and deployment`, escolha `GitHub Actions`.
-3. Faça push na branch `main`.
+```bash
+npm run build
+git worktree add --detach /tmp/copa-2026-gh-pages
+cd /tmp/copa-2026-gh-pages
+git checkout --orphan gh-pages
+git rm -rf .
+cp -R /caminho/do/projeto/dist/. .
+touch .nojekyll
+git add .
+git commit -m "Deploy GitHub Pages"
+git push origin gh-pages --force
+```
 
 ## Aviso
 
