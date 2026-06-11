@@ -1,0 +1,367 @@
+@import "tailwindcss";
+
+:root {
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  color: #050505;
+  background: #fff;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+    #fff;
+  background-size: 44px 44px;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.hero-section {
+  position: relative;
+  overflow: hidden;
+  background: #050505;
+  min-height: calc(100svh - 68px);
+}
+
+.hero-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center right;
+  opacity: 0.52;
+  filter: grayscale(1) contrast(1.15);
+}
+
+.hero-pattern {
+  position: absolute;
+  inset: 0;
+  opacity: 0.72;
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.74) 44%, rgba(0, 0, 0, 0.18) 100%),
+    linear-gradient(115deg, transparent 0 42%, rgba(255, 255, 255, 0.12) 42% 43%, transparent 43%),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.18) 0 1px, transparent 1px 76px);
+}
+
+.nav-button {
+  border: 1px solid transparent;
+  padding: 0.65rem 0.85rem;
+  font-size: 0.75rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.nav-button:hover,
+.nav-button.active {
+  border-color: #000;
+  background: #000;
+  color: #fff;
+}
+
+.primary-button,
+.ghost-button,
+.link-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  min-height: 48px;
+  border: 1px solid currentColor;
+  padding: 0.85rem 1.1rem;
+  font-size: 0.8rem;
+  font-weight: 950;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.primary-button {
+  background: #fff;
+  color: #000;
+}
+
+.ghost-button {
+  color: #fff;
+}
+
+.link-button {
+  background: #000;
+  color: #fff;
+  text-decoration: none;
+}
+
+.action-card {
+  display: grid;
+  min-height: 180px;
+  align-content: end;
+  gap: 0.8rem;
+  border: 1px solid #000;
+  background: #fff;
+  padding: 1.25rem;
+  text-align: left;
+}
+
+.action-card:hover {
+  background: #000;
+  color: #fff;
+}
+
+.action-card svg {
+  width: 32px;
+  height: 32px;
+}
+
+.action-card strong {
+  font-size: 1.65rem;
+  font-weight: 950;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.action-card span {
+  max-width: 24rem;
+  color: currentColor;
+  font-weight: 650;
+  opacity: 0.65;
+}
+
+.page-section {
+  width: min(1500px, 100%);
+  margin-inline: auto;
+  padding: 3rem 1rem 7rem;
+}
+
+@media (min-width: 768px) {
+  .page-section {
+    padding: 4.5rem 2rem 8rem;
+  }
+}
+
+.section-kicker {
+  width: fit-content;
+  border: 1px solid #000;
+  background: #000;
+  color: #fff;
+  padding: 0.45rem 0.65rem;
+  font-size: 0.75rem;
+  font-weight: 950;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.section-title {
+  margin-top: 1rem;
+  max-width: 1050px;
+  font-size: clamp(2.6rem, 8vw, 6.8rem);
+  font-weight: 950;
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+.group-panel {
+  border: 1px solid #000;
+  background: #fff;
+}
+
+.match-card {
+  border: 1px solid #d4d4d4;
+  background: #fff;
+  padding: 1rem;
+}
+
+.match-card:focus-within {
+  border-color: #000;
+  box-shadow: inset 0 0 0 1px #000;
+}
+
+.team-name {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  font-size: 1rem;
+  font-weight: 950;
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+
+.score-input {
+  width: 100%;
+  min-width: 0;
+  height: 42px;
+  border: 1px solid #000;
+  background: #fff;
+  color: #000;
+  text-align: center;
+  font-weight: 950;
+  outline: none;
+}
+
+.score-input:disabled {
+  border-color: #d4d4d4;
+  background: #f5f5f5;
+  color: #737373;
+}
+
+.select-field {
+  width: 100%;
+  min-height: 44px;
+  border: 1px solid #000;
+  background: #fff;
+  padding: 0.55rem 0.65rem;
+  color: #000;
+  font-size: 0.9rem;
+  font-weight: 800;
+  outline: none;
+}
+
+.standings-table {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: collapse;
+  font-size: 0.78rem;
+  font-weight: 850;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.standings-table th,
+.standings-table td {
+  border-bottom: 1px solid #e5e5e5;
+  padding: 0.72rem 0.45rem;
+}
+
+.standings-table th:first-child,
+.standings-table td:first-child {
+  text-align: left;
+}
+
+.standings-table th {
+  color: #737373;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+}
+
+.qualified-row {
+  background: #000;
+  color: #fff;
+}
+
+.qualified-row td {
+  border-color: #000;
+}
+
+.bracket-scroll {
+  overflow-x: auto;
+  padding-bottom: 1rem;
+}
+
+.bracket-grid {
+  display: grid;
+  min-width: 1280px;
+  grid-template-columns: repeat(6, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.bracket-column {
+  display: grid;
+  align-content: start;
+  gap: 1rem;
+}
+
+.bracket-column h3 {
+  position: sticky;
+  top: 76px;
+  z-index: 5;
+  border: 1px solid #000;
+  background: #000;
+  color: #fff;
+  padding: 0.75rem;
+  font-size: 0.82rem;
+  font-weight: 950;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.result-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.75rem 1rem;
+  align-items: center;
+  border: 1px solid #000;
+  background: #fff;
+  padding: 1.25rem;
+}
+
+.result-card svg {
+  grid-row: span 2;
+  width: 30px;
+  height: 30px;
+}
+
+.result-card span {
+  font-size: 0.72rem;
+  font-weight: 950;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #737373;
+}
+
+.result-card strong {
+  overflow-wrap: anywhere;
+  font-size: 2rem;
+  font-weight: 950;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.floating-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  width: 52px;
+  height: 52px;
+  border: 1px solid #000;
+  background: #000;
+  color: #fff;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.22);
+}
+
+@media (max-width: 640px) {
+  .nav-button {
+    padding: 0.5rem 0.55rem;
+    font-size: 0.68rem;
+  }
+
+  .team-name {
+    font-size: 0.9rem;
+  }
+
+  .result-card strong {
+    font-size: 1.5rem;
+  }
+}
