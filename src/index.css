@@ -76,18 +76,11 @@ button {
 }
 
 .brand-trophy {
-  display: grid;
   width: 46px;
   height: 86px;
-  place-items: center;
-  color: #d6a13a;
+  object-fit: contain;
+  object-position: center;
   filter: drop-shadow(0 0 9px rgba(214, 161, 58, 0.45));
-}
-
-.brand-trophy svg {
-  width: 100%;
-  height: 100%;
-  fill: rgba(214, 161, 58, 0.28);
 }
 
 .brand-lockup strong {

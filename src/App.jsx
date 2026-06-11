@@ -1,4 +1,5 @@
-import { CalendarDays, Clock, ExternalLink, Share2, Trophy } from 'lucide-react'
+import { CalendarDays, Clock, ExternalLink, Share2 } from 'lucide-react'
+import trophyImage from './assets/trofeu-copa-2026.png'
 import { groupMatches, groups } from './tournamentData'
 
 const teamNames = {
@@ -183,7 +184,7 @@ function App() {
       <section className="hero-panel">
         <header className="hero-nav">
           <a className="brand-lockup" href="#">
-            <span className="brand-trophy"><Trophy size={52} strokeWidth={1.8} /></span>
+            <img className="brand-trophy" src={trophyImage} alt="" />
             <strong>Copa 2026</strong>
           </a>
           <nav className="nav-center" aria-label="Navegacao principal">
