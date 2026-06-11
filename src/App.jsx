@@ -1,4 +1,4 @@
-import { CalendarDays, Clock, ExternalLink, Share2 } from 'lucide-react'
+import { CalendarDays, Clock, ExternalLink, Share2, Trophy } from 'lucide-react'
 import { groupMatches, groups } from './tournamentData'
 
 const teamNames = {
@@ -181,11 +181,20 @@ function App() {
   return (
     <main className="site-shell">
       <section className="hero-panel">
-        <div className="toolbar">
-          <a href="#grupos">Grupos</a>
-          <a href="#jogos">Todos os jogos</a>
-          <button type="button" onClick={sharePage}><Share2 size={16} /> Compartilhar</button>
-        </div>
+        <header className="hero-nav">
+          <a className="brand-lockup" href="#">
+            <span className="brand-trophy"><Trophy size={52} strokeWidth={1.8} /></span>
+            <strong>Copa 2026</strong>
+          </a>
+          <nav className="nav-center" aria-label="Navegacao principal">
+            <a href="#grupos">Grupos</a>
+            <span aria-hidden="true" />
+            <a href="#jogos">Todos os jogos</a>
+          </nav>
+          <button className="share-button" type="button" onClick={sharePage}>
+            <Share2 size={28} /> Compartilhar
+          </button>
+        </header>
 
         <section className="intro">
           <p>Acompanhe todos os jogos, horarios e resultados da Copa 2026 em um so lugar, com placares atualizados automaticamente a cada jogo.</p>
