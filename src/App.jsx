@@ -177,28 +177,10 @@ function GroupCard({ group, teams }) {
   )
 }
 
-function CopaLogo() {
-  return (
-    <div className="copa-logo" aria-label="Logo Copa 2026">
-      <div className="logo-emblem" aria-hidden="true">
-        <span className="emblem-number">26</span>
-        <span className="emblem-cup">
-          <i />
-        </span>
-        <span className="emblem-label">Copa</span>
-      </div>
-    </div>
-  )
-}
-
 function App() {
   return (
     <main className="site-shell">
       <section className="hero-panel">
-        <header className="topbar">
-          <CopaLogo />
-        </header>
-
         <div className="toolbar">
           <a href="#grupos">Grupos</a>
           <a href="#jogos">Todos os jogos</a>
